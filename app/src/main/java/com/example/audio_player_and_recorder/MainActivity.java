@@ -69,9 +69,11 @@ public class MainActivity extends AppCompatActivity implements FileAdapter.OnFil
         // all available recordings and playing them
         mRecordings = new ArrayList<File>();
         File[] files = mRecordingsDir.listFiles();
-        for (File f : files){
-            if (f.isFile() && f.getName().endsWith(RECORDING_FILE_EXTENSION)) {
-                mRecordings.add(f);
+        if (files != null) {
+            for (File f : files) {
+                if (f.isFile() && f.getName().endsWith(RECORDING_FILE_EXTENSION)) {
+                    mRecordings.add(f);
+                }
             }
         }
 
@@ -221,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements FileAdapter.OnFil
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if ((requestCode == PERMISSIONS)) {
             for(int grantResult : grantResults) {
-                if (grantResult != 1) this.finishAffinity();
+                if (grantResult != 0) this.finishAffinity();
             }
         }
     }
